@@ -1,20 +1,23 @@
 package com.mourat.udemy.springmvcvalidation.model;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Customer {
 
     private String firstName;
+
     @NotNull(message = "is required!")
     @Size(min = 1, message = "is required!")
     private String lastName;
 
+    @NotNull(message = "is required")
     @Min(value = 0, message = "must be a positive number!")
     @Max(value = 10, message = "shouldn't be more than 10!")
-    private int freePasses;
+    private Integer freePasses;
+
+    @NotNull(message = "is required")
+    @Pattern(regexp="^[a-zA-Z0-9]{5}", message="invalid postal code, must be 5 digits")
+    private String postalCode;
 
     public Customer() {
     }
@@ -35,11 +38,19 @@ public class Customer {
         this.lastName = lastNAme;
     }
 
-    public int getFreePasses() {
+    public Integer getFreePasses() {
         return freePasses;
     }
 
-    public void setFreePasses(int freePasses) {
+    public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 }
